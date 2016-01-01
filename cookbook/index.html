@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>CucinaCassera</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/icon-moon.css">
+    <link rel="stylesheet" href="css/buttons.css">
+
+    <script src="js/libs/handlebars-v1.3.0.js"></script>
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/typeahead.js"></script>
+    <script src="js/libs/ember.prod.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/fixtures.js"></script>
+
+    <script src="tests/load-tests.js"></script>
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+      <header>
+        <div>
+          <span class="first">CUCINA</span><span>CASSERA</span>
+        </div>
+        <div class="searchSection">
+          {{ render "autocomplete" model }}
+        </div>
+      </header>
+      <div class="inner">
+        <div class="catNav">
+            <div class="createRecipe"><a href="/#/recipe/new" class="button button-rounded button-highlight"><i class="icon-download"></i>Create Recipe</a></div>
+            {{#link-to "recipes"}}Show All{{/link-to}}
+            {{#link-to "category" "top"}}top list{{/link-to}}
+            {{#link-to "category" "try"}}need to try{{/link-to}}
+            {{#link-to "category" "basic"}}basic technique{{/link-to}}
+            {{#link-to "category" "mod1"}}mod1{{/link-to}}
+            {{#link-to "category" "mod2"}}mod2{{/link-to}}
+            {{#link-to "category" "mod3"}}mod3{{/link-to}}
+            {{#link-to "category" "mod4"}}mod4{{/link-to}}
+            {{#link-to "category" "mod5"}}mod5{{/link-to}}
+        </div>
+        <div>
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+
+  <script type="text/x-handlebars" data-template-name="autocomplete">
+    <div class="searchBar">
+      {{input type="text" placeholder="Search by Recipe Title"}}
+    </div>
+  </script>
+
+<script type="text/x-handlebars" data-template-name="recipenew">
+  <div class="detail">
+  <h1>Add Recipe</h1>
+  <form class="newRecipe" {{action "submitRecipe" content on="submit"}}>
+    <div class="el">
+      {{input value=title placeholder="recipe title" type="text"}}
+    </div>
+    <div class="el">
+      {{input value=yield placeholder="yield" type="text"}}
+    </div>
+    <button {{ action "addIng" }}>Add Ingrident</button>
+    <div class="el ingWrap">
+      {{#each ing in ings}}
+        <div class="ing">
+          <div class="value"> {{input value=ing.value placeholder="ingridient" type="text"}}</div>
+          <div class="notes">{{input value=ing.notes placeholder="notes" type="text"}}</div>
+          <div class="amount">{{input value=ing.amount placeholder="amount" type="text"}}</div>
+        </div>
+    {{/each}} 
+    </div>
+    <div class="el">
+      {{textarea value=descr placeholder="Description"}}
+    </div>
+    <div class="el flagWrap">
+       <div class="flags">
+          {{input name=tryFlg type="checkbox" checked=tryFlg}}
+          <label>Need to Try</label>
+       </div>
+       <div class="flags">
+          {{input name=basicFlg type="checkbox" checked=basicFlg}}
+          <label>Basic Technique</label>
+       </div>
+       <div class="flags">
+          {{input name=slowFlg type="checkbox" checked=slowFlg}}
+          <label>Slow and Low</label>
+       </div>
+       <div class="flags">
+          {{input name=partyFlg type="checkbox" checked=partyFlg}}
+          <label>Party Food</label>
+       </div>
+       <div class="flags">
+          {{input name=appFlg type="checkbox" checked=appFlg}}
+          <label>Appetizers</label>
+       </div>
+        <div class="flags">
+          {{input name=entreeFlg type="checkbox" checked=entreeFlg}}
+          <label>Entree</label>
+       </div>
+        <div class="flags">
+          {{input name=pastryFlg type="checkbox" checked=pastryFlg}}
+          <label>Pastry</label>
+       </div>
+       <div class="flags tag">
+          <label>Tag</label>
+          {{input value=tags  type="text" }}
+       </div>
+    </div>
+    <button type="submit" class="submitBtn button button-rounded button-primary">Submit</button>
+  </form>
+  </div>
+</script>
+
+  <script type="text/x-handlebars" data-template-name="category">
+      <h1>Category Recipes</h1>
+      <div class="recipe-list">
+        {{#each rec in model}}
+            <div class="recipe">
+              <span class="title">{{#link-to "recipe" rec}}{{rec.title}}{{/link-to}}</span>
+              {{rating-cmp rating=rec.ratingint classNames='rating'}}
+              <div class="ingNum">{{rec.ingnum}}&nbsp;ingridients</div>
+            </div>
+        {{/each}}
+      </div>
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="recipes">
+      <h1>All Recipes</h1>
+      <span>Total Recipes: {{totalRecipes}}</span>
+      <div class="recipe-list">
+        {{#each rec in model}}
+            <div class="recipe">
+              <span class="title">{{#link-to "recipe" rec}}{{rec.title}}{{/link-to}}</span>
+              {{rating-cmp rating=rec.ratingint classNames='rating'}}
+              <div class="ingNum">{{rec.ingnum}}&nbsp;ingridients</div>
+            </div>
+        {{/each}}
+      </div>
+      {{outlet}}
+    </script>
+    <script type="text/x-handlebars" data-template-name="recipe">
+      <section class="detail">
+      <h1>{{title}}</h1>
+        <div class="group">
+        <div class="yield">{{yieldstr}}</div>
+        {{rating-cmp rating=ratingint classNames='rating'}}
+        <div class="ings">
+        {{#each ing in ings}}
+          <div {{bind-attr class=ing.isHead}}>
+            <div class="value">{{ing.value}}</div>
+            <div class="notes">{{ing.notes}}</div>
+            <div class="amount">{{ing.amount}}</div>
+          </div>
+        {{/each}}
+        </div>
+        <div class="descr">
+          {{#each dec in description}}
+            <div>{{dec}}</div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="notes section">
+        <h2>Notes</h2>
+        <div class="note-body">
+          {{#each note in notes}}
+            <div class="note">
+              <div><a {{action "deleteNote" note}}><i class="icon icon-times"></i></a></div>
+              <div class="date">{{formatDate note.date}}</div>
+              <div>{{note.text}}</div>
+            </div>
+          {{/each}}
+          <div class="newNote">
+            {{input value=newnote placeholder="Add Notes" type="text"}}
+            <button {{action "submitNote"}} class="button button-rounded button-primary">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="similarRecipes section">
+        <h2>Similar Recipes</h2>
+        {{#each rec in similarRecipes}}
+            <div class="recipe">
+              <span class="title">{{#link-to "recipe" rec}}{{rec.title}}{{/link-to}}</span>
+              {{rating-cmp rating=rec.ratingint classNames='rating'}}
+              <div class="ingNum">{{rec.ingnum}}&nbsp;ingridients</div>
+            </div>
+        {{/each}}
+      </div>
+      <div class="tags section">
+          <h2>Tags</h2>
+          <div class="tag-body">{{tags}}</div>
+      </div>
+      {{thumbnail}}
+      <img id="dynamicImg" {{bind-attr src=tempThumb}} />
+      <div class="clear">
+        {{#link-to "recipes"}}<button class="button button-rounded">Return to Results</button>{{/link-to}}&nbsp;&nbsp;
+        <button class="button button-rounded button-caution deleteRecipe" {{action "deleteRecipe"}}>Delete Recipe</button>
+      </div>
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="components/rating-cmp">
+      {{#if rating}}
+        {{#each rating}}
+          <span class="icon-food"></span>
+        {{/each}}
+      {{/if}}
+    </script>    
+
+    <div id="qunit" style="display: none"></div>
+    <div id="qunit-fixture" style="display: none"></div>
+  </body>
+</html>

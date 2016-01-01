@@ -1,0 +1,147 @@
+/* html5doctor.com Reset v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/) - http://cssreset.com */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+.clear { clear: both; }
+
+* {
+  box-sizing: border-box;
+}
+
+/* FONTS */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/* APP */
+
+body {
+  margin: 0 auto;
+  font-family: 'Open Sans', 'sans-serif';
+  padding-bottom: 100px;
+}
+
+.inner { padding-left: 20px; }
+
+/* headers */
+h1 { font-size: 1.5em; text-transform: uppercase; color: #4462AF;}
+h2 { font-size: 1.2em; text-transform: uppercase; color: #4462AF;}
+header { margin-bottom: 11px; background-color: #337; padding: 10px; color: #F5F5F5; font-size: 1.25em; }
+header > div { display: inline-block; position: relative; top: 10px;}
+.searchSection { margin-left: 35px;}
+header .first { color: #FCFC83; }
+
+/* inputs */
+input[type=text] { padding: 3px 5px; margin-bottom: 5px; font-size: 0.8em; width: 350px; }
+.ing input[type=text] { width: 160px;}
+
+.twitter-typeahead { position: relative; top: -7px; width: 950px; }
+
+.panelDark { background-color: #999; color: white;}
+
+.acResults { position: absolute; top: 30px; left: 76px; background-color: #CCC; min-width: 153px; z-index: 5; }
+.acResults li { list-style: none; padding: 4px 7px; border-bottom: 1px solid #888;}
+.searchBar { position: relative;}
+
+.currentRecipeWrap { display: none; position: fixed; height: 80px; bottom:0; width: 100%; padding: 11px; }
+.currentRecipeWrap .title { font-size: 2em; color: #531653;}
+
+.cat { border: 2px solid red; padding: 20px; overflow: auto;}
+.catNav { margin: 15px 0; }
+.catNav > * { display: inline-block; }
+.catNav > a { padding: 6px 12px; text-decoration: none; text-transform: uppercase; font-size: 0.9em; }
+.catNav > a.active,
+  .catNav > a:hover { background-color: #6D6D6D; border-radius: 6px; color: #f5f5f5;}
+.catNav .createRecipe { margin-right: 12px; }
+
+.recipe { position: relative; border: 1px solid #ccc; margin: 14px; width: 300px; float: left; height: 90px; overflow: hidden; box-shadow: darkgray 9px 6px 21px;
+border-radius: 6px; background-color: #f7f7f7; }
+.recipe > span { display: inline-block;}
+.recipe .ingNum { padding: 8px 10px; }
+.recipe .title { padding: 7px 26px 10px 12px; background-color: white; border-bottom: 1px dotted #3D3D3D; color: black; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 312px; }
+.recipe .rating { position: absolute; right: 9px; bottom: 5px; font-size: 1.3em; }
+
+/* recipe detail */
+.detail { position: relative; }
+.detail .group { margin-left: 20px; min-height: 295px; }
+.detail .yield, .detail .rating { display: inline-block;}
+.detail .rating { margin-left: 10px;}
+.detail .ings { min-height: 305px;}
+.detail .ings > div { width: 570px; border: 1px solid #ccc; margin: 3px; overflow: auto; padding: 5px; margin: 5px 0; }
+.detail .ings > div:nth-child(even) { background-color: #f7f7f7;}
+.detail .ings > div > div { float: left; min-width: 100px;  }
+.detail .ings > div .value { width: 217px; }
+.detail .ings > div .amount { float: right; }
+.detail .ings > div.is-head { background-color: #7280A2; color: white; }
+.detail .descr { margin-top: 20px; }
+.detail .descr > div { margin: 8px 0; }
+.detail .yield { margin: 10px 0; }
+.detail .el textarea { width: 570px; height: 150px; margin-top:10px;}
+.detail .similarRecipes { overflow: auto;}
+.detail #dynamicImg { position: absolute; top: 63px; left: 610px; padding: 7px; border: 1px solid #CCC; border-radius: 6px; max-height: 300px;}
+.detail .newNote { clear: both; }
+.detail .note { overflow: auto; font-size: 0.8em; text-transform: uppercase; }
+.detail .note .icon { color: red; }
+.detail .note .date { width: 110px;}
+.detail .note > div { float: left; margin: 3px 4px; }
+.detail .deleteRecipe { float: right; margin-right: 50px;}
+.detail .flagWrap {width: 580px; overflow: auto; }
+.detail .flags { float: left; width: 186px; padding: 10px; }
+.detail .flags.tag { width: 380px; position: relative; top: -8px; }
+.detail .flags input[type=text] { width: 327px; }
+.detail .submitBtn { clear: both; display: block;}
+.detail [class*="-body"] { margin: 10px 0 0 20px;  }
+.detail .section { margin: 10px 0; } 
+
+/* buttons */
+.button i { margin-right: 5px; font-size: 1.1em;}
+
+/* typeahead autocomplete */
+.tt-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+.tt-suggestion > p {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #333333;
+  white-space: nowrap;
+}
+.tt-suggestion > p:hover,
+.tt-suggestion > p:focus,
+.tt-suggestion.tt-cursor p,
+.tt-is-under-cursor > p {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #428bca;
+}
